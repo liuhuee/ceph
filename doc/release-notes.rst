@@ -2,6 +2,34 @@
  Release Notes
 ===============
 
+v0.48.2 "argonaut"
+------------------
+
+Upgrading
+~~~~~~~~~
+
+* If you are using the as-yet undocumented ceph-disk-prepare and upstart scripts, their behavior has changed.
+
+Notable changes
+~~~~~~~~~~~~~~~
+
+* librbd: fix memory leak in discard
+* librbd: fix ENOENT handling in discard
+* ceph.spec: don't package crush header files
+* mon: produces less log noise from "check_sub"
+* ceph tool: fixed help test for 'ceph osd create [uuid]' command
+* mkcephfs: fixed keyring default locations
+* obsync: fixed display of traceback on error
+* radosgw: fixed Context-Range: header for objects larger than 2 GB
+* radosgw: fix incorrect usage reporting for busy buckets
+* upstart: trivial regex cleanup
+* ceph-disk-prepare: take fsid from config file
+* ceph-disk-prepare: partition and format osd data disks automatically
+* upstart: adjust osd location in crush map on start
+* upstart, ceph-create-keys: make client.admin key generation automatic
+* config: add per-name default keyring to search path
+
+
 v0.48.1 "argonaut"
 ------------------
 
