@@ -213,7 +213,8 @@ void Monitor::recovered_leader(int id)
   if (paxos_recovered.size() == paxos.size()) {
     dout(10) << "all paxos instances recovered, going writeable" << dendl;
 
-    if (!features.incompat.contains(CEPH_MON_FEATURE_INCOMPAT_GV)) {
+    if (!features.incompat.contains(CEPH_MON_FEATURE_INCOMPAT_GV) &&
+	(quorum_features & CEPH_FEATURE_MON_GV)) {
       dout(0) << "setting CEPH_MON_FEATURE_INCOMPAT_GV" << dendl;
       features.incompat.insert(CEPH_MON_FEATURE_INCOMPAT_GV);
       write_features();
@@ -238,7 +239,8 @@ void Monitor::recovered_peon(int id)
   if (paxos_recovered.size() == paxos.size()) {
     dout(10) << "all paxos instances recovered/leased" << dendl;
 
-    if (!features.incompat.contains(CEPH_MON_FEATURE_INCOMPAT_GV)) {
+    if (!features.incompat.contains(CEPH_MON_FEATURE_INCOMPAT_GV) &&
+	(quorum_features & CEPH_FEATURE_MON_GV)) {
       dout(0) << "setting CEPH_MON_FEATURE_INCOMPAT_GV" << dendl;
       features.incompat.insert(CEPH_MON_FEATURE_INCOMPAT_GV);
       write_features();
